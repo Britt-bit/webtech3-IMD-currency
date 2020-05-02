@@ -6,7 +6,13 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-const apiTransactionRouter = require('./routes/api/transaction');
+const apiTransactionRouter = require('./routes/api/v1/transaction');
+
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/transaction', {
+  useNewUrlParser: true, 
+  useUnifiedTopology: true
+});
 
 const app = express();
 
