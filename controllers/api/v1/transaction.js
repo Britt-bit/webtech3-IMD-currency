@@ -1,16 +1,30 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const transactionSchema = new Schema({
-    fromUser: String, 
-    //toUser: {id, name, lastname, ...},
-    //points: idk,
+    //transaction_id: ObjectId,
+    //user: [{id: ObjectId, name: String, lastname: String, email: String, password: String, coins: Number}],
+    fromUser: {
+        type: Schema.ObjectId,
+        ref: 'User'
+    },
+    toUser: {
+        type: Schema.ObjectId,
+        ref: 'User'
+    },
+    coins: {
+        type: Number,
+        required: true
+    },
     date: {type: Date, default: Date.now},
+    reason: String,
+    message: String,
     completed: Boolean
 });
 const Transaction = mongoose.model('Transaction', transactionSchema);
+//const User = mongoose.model('User', userSchema);
 
 const getAll = (req, res) => {
-    Transaction.find({"fromUser": "Britt"}, (err, docs) => {
+    Transaction.find({"completed": 0}, (err, docs) => {
         res.json({
             "status": "success",
             "data": {
@@ -18,16 +32,27 @@ const getAll = (req, res) => {
                 "data": docs
             }    
         });
-    })
-
-    
+    })  
 }
 
 const create = (req, res) => {
     let transaction = new Transaction();
-    transaction.fromUser = "Britt";
-    transaction.date = '2002-12-09';
+    transaction.fromUser = new mongoose.Types.ObjectId;;
+    transaction.toUser = new mongoose.Types.ObjectId;;
+    transaction.coins = 20;
+
+    transaction.reason = "Help with developing";
+    transaction.message = "Thank you";
     transaction.completed = false;
+
+    user.save((err, doc) => {
+        if(!err){
+            res.json({
+                "status": "success",
+                "data": doc
+            });
+        }
+    })
     transaction.save((err, doc) => {
         if(!err){
             res.json({
@@ -42,3 +67,6 @@ const create = (req, res) => {
 
 module.exports.getAll = getAll;
 module.exports.create = create;
+
+module.exports.transactionSchema = mongoose.model('transaction', transactionSchema);
+//odule.exports.user = mongoose.model('user', userSchema);

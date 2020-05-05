@@ -7,6 +7,7 @@ const logger = require('morgan');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const apiTransactionRouter = require('./routes/api/v1/transaction');
+const userRouter= require('./routes/api/v1/user_data');
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/transaction', {
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/transaction', apiTransactionRouter);
+app.use('/api/user_data', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
