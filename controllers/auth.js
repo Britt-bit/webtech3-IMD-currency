@@ -20,7 +20,7 @@ const signup = async (req, res, next) => {
             uid: result._id,
             username: result.username
             //coins: result.coins
-        }, "MyVerySecretWord")
+        }, "MyVerySecretWord");
 
         res.json({
             "status": "success",
