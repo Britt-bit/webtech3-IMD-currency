@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
+//const user = require('./user_data');
+//console.log(userSchema.name);
 const Schema = mongoose.Schema;
 const transactionSchema = new Schema({
     //transaction_id: ObjectId,
     //user: [{id: ObjectId, name: String, lastname: String, email: String, password: String, coins: Number}],
     fromUser: {
-        type: Schema.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
     toUser: {

@@ -10,6 +10,7 @@ const apiTransactionRouter = require('./routes/api/v1/transaction');
 const userRouter= require('./routes/api/v1/user_data');
 
 const mongoose = require('mongoose');
+mongoose.set('useCreateIndex', true);
 mongoose.connect('mongodb://localhost:27017/transaction', {
   useNewUrlParser: true, 
   useUnifiedTopology: true
