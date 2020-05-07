@@ -13,7 +13,7 @@ routerUser.get("/", userController.getAllUser);
 
 /* user login */
 routerUser.post("/signup", authController.signup);
-
+routerUser.post("/login", authController.login);
 /* get leaderboard: haal per user het aantal coins op */
 
 module.exports = routerUser;
