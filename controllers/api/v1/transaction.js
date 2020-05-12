@@ -1,23 +1,5 @@
-const mongoose = require('mongoose');
-const User = require('./user_data');
-//console.log(userSchema.name);
-const Schema = mongoose.Schema;
-const transactionSchema = new Schema({
-    //transaction_id: ObjectId,
-    //user: [{id: ObjectId, name: String, lastname: String, email: String, password: String, coins: Number}],
-    //fromUser: {type: String,ref: 'User'},
-    //toUser: {type: Schema.ObjectId,ref: 'User'},
-    coins: {
-        type: Number,
-        required: true
-    },
-    date: {type: Date, default: Date.now},
-    reason: {
-        type: String},
-    message: {type: String},
-    completed: {type: Boolean}
-});
-const Transaction = mongoose.model('Transaction', transactionSchema);
+const Transaction = require('../../../models/Transaction');
+//const User = require('./user_data');
 //const User = mongoose.model('User', userSchema);
 
 const getAll = (req, res) => {
@@ -32,32 +14,38 @@ const getAll = (req, res) => {
     })  
 }
 
-const create = (req, res) => {
-    let transaction = new Transaction();
+const create = async (req, res) => {
+    console.log(req.body);
+
+    let toUser = req.body.toUser;
+    let coins = req.body.coins;
+    let reason = req.body.reason;
     let message = req.body.message;
-    //transaction.fromUser = new mongoose.Types.ObjectId;;
-    //transaction.toUser = new mongoose.Types.ObjectId;;
-    transaction.coins = 20;
+    //transaction.fromUser = new mongoose.Types.ObjectId;
 
-    transaction.reason = "Help with developing";
-    transaction.message = message;
-    transaction.completed = false;
-
-
+    const transaction = new Transaction({
+        toUser: toUser,
+        coins: coins,
+        reason: reason,
+        message: message,
+        completed: false
+    });
+    //await 
     transaction.save((err, doc) => {
-        if(!err){
-            res.json({
-                "status": "success",
-                "data": doc
-            });
-        }
-    })
-
-    
-}
+    //.then(result => {
+        res.json({
+            "status": "success",
+            "data": doc
+        })
+    }).catch(error => {
+        res.json({
+            "status": "error"
+        });
+    }); 
+};
 
 module.exports.getAll = getAll;
 module.exports.create = create;
 
-module.exports.transactionSchema = mongoose.model('transaction', transactionSchema);
+//module.exports.transactionSchema = mongoose.model('transaction', transactionSchema);
 //odule.exports.user = mongoose.model('user', userSchema);
