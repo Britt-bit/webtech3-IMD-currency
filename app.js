@@ -34,7 +34,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/api/transaction', passport.authenticate('jwt', {session: false}), apiTransactionRouter);
+app.use('/api/transaction', passport.authenticate('jwt', {
+  session: false
+}), apiTransactionRouter);
 app.use('/api/user_data', userRouter);
 
 // catch 404 and forward to error handler

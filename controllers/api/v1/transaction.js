@@ -3,7 +3,7 @@ const Transaction = require('../../../models/Transaction');
 //const User = mongoose.model('User', userSchema);
 
 const getAll = (req, res) => {
-    Transaction.find({"completed": 0}, (err, docs) => {
+    Transaction.find({"user": req.user._id}, (err, docs) => {
         res.json({
             "status": "success",
             "data": {
@@ -16,7 +16,8 @@ const getAll = (req, res) => {
 
 const create = async (req, res) => {
     console.log(req.body);
-
+    let fromUser = req.user._id;
+    //console.log(req.user);
     let toUser = req.body.toUser;
     let coins = req.body.coins;
     let reason = req.body.reason;
@@ -24,6 +25,7 @@ const create = async (req, res) => {
     //transaction.fromUser = new mongoose.Types.ObjectId;
 
     const transaction = new Transaction({
+        fromUser: fromUser,
         toUser: toUser,
         coins: coins,
         reason: reason,

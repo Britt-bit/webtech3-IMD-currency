@@ -2,7 +2,8 @@ const User = require('../../../models/User_data');
 const authController = require('../../auth');
 
 const getAllUser = (req, res) => {
-    User.find({"name": "Stijn"}, (err, docs) => {
+    //let uid = result.user._id;
+    User.find({"_id": {"$nin": ["5eb51fd1ad1270d1e32537b4"]}}, (err, docs) => {
         res.json({
             "status": "success",
             "data": {
@@ -10,7 +11,7 @@ const getAllUser = (req, res) => {
                 "data": docs
             }    
         });
-    })  
+    }) 
 }
 
 const createUser = (req, res, next) => {
