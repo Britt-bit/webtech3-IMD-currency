@@ -3,7 +3,7 @@ const Transaction = require('../../../models/Transaction');
 //const User = mongoose.model('User', userSchema);
 
 const getAll = (req, res) => {
-    Transaction.find({"user": req.user._id}, (err, docs) => {
+    Transaction.find({"fromUser": req.user._id}, (err, docs) => {
         res.json({
             "status": "success",
             "data": {

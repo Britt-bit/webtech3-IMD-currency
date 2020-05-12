@@ -37,7 +37,9 @@ app.use('/users', usersRouter);
 app.use('/api/transaction', passport.authenticate('jwt', {
   session: false
 }), apiTransactionRouter);
-app.use('/api/user_data', userRouter);
+app.use('/api/user_data', passport.authenticate('jwt', {
+  session: false
+}),userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

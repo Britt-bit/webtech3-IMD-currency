@@ -3,7 +3,8 @@ const authController = require('../../auth');
 
 const getAllUser = (req, res) => {
     //let uid = result.user._id;
-    User.find({"_id": {"$nin": ["5eb51fd1ad1270d1e32537b4"]}}, (err, docs) => {
+    //console.log(req.user._id);
+    User.find({"_id": {"$nin": [req.user._id]}}, (err, docs) => {
         res.json({
             "status": "success",
             "data": {
