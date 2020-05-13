@@ -9,6 +9,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const apiTransactionRouter = require('./routes/api/v1/transaction');
 const userRouter= require('./routes/api/v1/user_data');
+const myUserRouter= require('./routes/api/v1/my_user_data.js');
 const passport = require('./passport/passport');
 
 const mongoose = require('mongoose');
@@ -37,9 +38,11 @@ app.use('/users', usersRouter);
 app.use('/api/transaction', passport.authenticate('jwt', {
   session: false
 }), apiTransactionRouter);
-app.use('/api/user_data', passport.authenticate('jwt', {
+app.use('/api/user_data', userRouter);
+app.use('/api/my_user_data', passport.authenticate('jwt', {
   session: false
-}),userRouter);
+}), myUserRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

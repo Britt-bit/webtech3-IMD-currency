@@ -15,14 +15,18 @@ const getAll = (req, res) => {
 }
 
 const create = async (req, res) => {
-    console.log(req.body);
+    //console.log(req.body.coins);
+    //console.log(req.user);
     let fromUser = req.user._id;
     //console.log(req.user);
     let toUser = req.body.toUser;
     let coins = req.body.coins;
     let reason = req.body.reason;
     let message = req.body.message;
+    let ownCoins = req.user.coins;
     //transaction.fromUser = new mongoose.Types.ObjectId;
+
+
 
     const transaction = new Transaction({
         fromUser: fromUser,
@@ -32,18 +36,29 @@ const create = async (req, res) => {
         message: message,
         completed: false
     });
-    //await 
+    console.log(req.user.coins);
+    console.log(req.body.coins);
+    
+
+    Transaction.find({ ownCoins: {$gte: coins}},
+    
     transaction.save((err, doc) => {
     //.then(result => {
+        if(!err){
         res.json({
             "status": "success",
-            "data": doc
+            "data": doc,
+            "user": req.user.coins
         })
-    }).catch(error => {
+    }
+    if(err){
         res.json({
-            "status": "error"
-        });
-    }); 
+            "status": "error",
+            "message": "something went wrong"
+        })
+    }
+    }))
+
 };
 
 module.exports.getAll = getAll;

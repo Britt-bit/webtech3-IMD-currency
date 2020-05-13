@@ -6,7 +6,7 @@ const userController = require('../../../controllers/api/v1/user_data');
 /** /api/trasaction */
 
 /* get transfers = haalt alle transfers op uit de database (enkel uit eigen account) */
-routerUser.get("/", userController.getAllUser);
+//routerUser.get("/", userController.getAllUser);
 
 /* specifieke user ophalen bij login /*
 /* /_id*/
