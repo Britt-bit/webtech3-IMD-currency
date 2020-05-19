@@ -36,8 +36,8 @@ const create = async (req, res) => {
         message: message,
         completed: false
     });
-    console.log(req.user.coins);
-    console.log(req.body.coins);
+    //console.log(req.user.coins);
+    //console.log(req.body.coins);
     
 
     Transaction.find({ ownCoins: {$gte: coins}},
@@ -48,7 +48,7 @@ const create = async (req, res) => {
         res.json({
             "status": "success",
             "data": doc,
-            "user": req.user.coins
+            "user": req.user
         })
     }
     if(err){
@@ -61,8 +61,12 @@ const create = async (req, res) => {
 
 };
 
+
+
+
 module.exports.getAll = getAll;
 module.exports.create = create;
+
 
 //module.exports.transactionSchema = mongoose.model('transaction', transactionSchema);
 //odule.exports.user = mongoose.model('user', userSchema);

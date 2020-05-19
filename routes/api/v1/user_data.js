@@ -10,7 +10,7 @@ const userController = require('../../../controllers/api/v1/user_data');
 
 /* specifieke user ophalen bij login /*
 /* /_id*/
-
+routerUser.put("/:id", authController.update);
 /* user login */
 routerUser.post("/signup", authController.signup);
 routerUser.post("/login", authController.login);

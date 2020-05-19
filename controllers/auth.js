@@ -65,5 +65,46 @@ const login = async (req, res, next) => {
     });
 }
 
+const update = async (req, res) => {
+    let toUser = req.body.toUserID;
+    let fromUser = req.body.fromUser;
+    let transaction = req.body.transactionCoins;
+
+    //console.log(req.user.coins);
+    //console.log(transaction);
+    User.findByIdAndUpdate({
+        _id: toUser
+    }, {
+        "$inc": { coins: +transaction} 
+    }, {new: true 
+    }).then(doc => {
+        res.json({
+            "status": "success",
+            "data": {
+                user: doc
+            }
+        })
+    }).catch(err => {
+        //res.json(err);
+    })
+
+    User.findByIdAndUpdate({
+        _id: fromUser
+    }, {
+        "$inc": { coins: -transaction} 
+    }, {new: true 
+    }).then(doc => {
+        res.json({
+            "status": "success",
+            "data": {
+                user: doc
+            }
+        })
+    }).catch(err => {
+        //res.json(err);
+    })
+}
+
 module.exports.signup = signup;
 module.exports.login = login; 
+module.exports.update = update;
