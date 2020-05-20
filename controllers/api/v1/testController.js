@@ -1,4 +1,5 @@
 const Transaction = require("../../../models/Transaction");
+const User = require("../../../models/User_data");
 
 const getById = (req, res) => {
 	Transaction.find({ _id: req.params.id }, (err, docs) => {
@@ -19,24 +20,59 @@ const getById = (req, res) => {
 		}
 	});
 };
-const create = (req, res) => {
-	let transaction = new Transaction();
-	transaction.fromUser = "1221313";
-	transaction.toUser = "1231";
-	transaction.coins = "1";
-	transaction.reason = "wee";
-	transaction.message = "bro";
-	transaction.completed = false;
-	transaction.save((err, doc) => {
+// const create = (req, res) => {
+// 	let transaction = new Transaction();
+// 	transaction.fromUser = "1221313";
+// 	transaction.toUser = "1231";
+// 	transaction.coins = "499";
+// 	transaction.reason = "wee";
+// 	transaction.message = "bro";
+// 	transaction.completed = false;
+// 	transaction.save((err, doc) => {
+// 		if (!err) {
+// 			res.json({
+// 				status: "success",
+// 				data: {
+// 					transaction: doc,
+// 				},
+// 			});
+// 		}
+// 	});
+// };
+const getAll = (req, res) => {
+	User.find({}, (err, docs) => {
+		res.json({
+			status: "success",
+			data: {
+				status: "succes",
+				data: docs,
+			},
+		});
+	}).sort({ coins: "descending" });
+};
+
+const createUser = (req, res) => {
+	let user = new User();
+	user.name = "jos";
+	user.lastname = "ke";
+	user.coins = "232";
+
+	user.save((err, doc) => {
+		if (err) {
+			res.json({
+				status: "error",
+				message: "could not save this user",
+			});
+		}
 		if (!err) {
 			res.json({
 				status: "success",
-				data: {
-					transaction: doc,
-				},
+				data: doc,
 			});
 		}
 	});
 };
+module.exports.createUser = createUser;
+module.exports.getAll = getAll;
 module.exports.getById = getById;
-module.exports.create = create;
+// module.exports.create = create;
