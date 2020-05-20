@@ -16,7 +16,7 @@ const getAll = (req, res) => {
 
 const create = async (req, res) => {
     //console.log(req.body.coins);
-    //console.log(req.user);
+    //console.log(req.body);
     let fromUser = req.user._id;
     //console.log(req.user);
     let toUser = req.body.toUser;

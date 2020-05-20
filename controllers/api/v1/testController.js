@@ -1,17 +1,14 @@
 const Transaction = require("../../../models/Transaction");
 
 const getById = (req, res) => {
-	Transaction.find(
-		{
-			_id: req.params.id,
-		},
-		(err, docs) => {
+	Transaction.find({"_id": req.params.id}, (err, docs) => {
+		console.log(req);
 			if (!err) {
 				res.json({
-					status: "success",
-					data: {
-						data: docs,
-					},
+					"status": "success",
+					"data": {
+						"data": docs
+					}
 				});
 			}
 			if (err) {
@@ -23,4 +20,6 @@ const getById = (req, res) => {
 		}
 	);
 };
+
+
 module.exports.getById = getById;
