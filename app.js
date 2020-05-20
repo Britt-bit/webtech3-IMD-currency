@@ -14,11 +14,11 @@ const passport = require("./passport/passport");
 const config = require("config");
 //const testRouter = require("./routes/api/v1/testController");
 
-const mongoose = require("mongoose");
-mongoose.set("useCreateIndex", true);
-mongoose.connect(process.env.dbconn || config.get("Database.conn"), {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
+const mongoose = require('mongoose');
+mongoose.set('useCreateIndex', true);
+mongoose.connect(process.env.dbconn || config.get('Database.conn'), {
+  useNewUrlParser: true, 
+  useUnifiedTopology: true
 });
 
 const app = express();
@@ -36,23 +36,15 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(cors());
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
-app.use(
-	"/api/transaction",
-	passport.authenticate("jwt", {
-		session: false,
-	}),
-	apiTransactionRouter
-);
-app.use("/api/user_data", userRouter);
-app.use(
-	"/api/my_user_data",
-	passport.authenticate("jwt", {
-		session: false,
-	}),
-	myUserRouter
-);
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/api/transaction', passport.authenticate('jwt', {
+  session: false
+}), apiTransactionRouter);
+app.use('/api/user_data', userRouter);
+app.use('/api/my_user_data', passport.authenticate('jwt', {
+  session: false
+}), myUserRouter);
 
 //app.use("/api/test", testRouter);
 
