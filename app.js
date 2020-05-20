@@ -11,12 +11,12 @@ const apiTransactionRouter = require("./routes/api/v1/transaction");
 const userRouter = require("./routes/api/v1/user_data");
 const myUserRouter = require("./routes/api/v1/my_user_data.js");
 const passport = require("./passport/passport");
-const config = require("config");
 const testRouter = require("./routes/api/v1/testController");
 
+const config = require("config");
 const mongoose = require("mongoose");
 mongoose.set("useCreateIndex", true);
-mongoose.connect(config.get("Database.conn"), {
+mongoose.connect(process.env.dbconn || config.get("Database.conn"), {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
 });
