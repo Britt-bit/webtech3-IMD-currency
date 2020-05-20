@@ -1,6 +1,6 @@
 {
     "Database": {
-        "conn": "mongodb://localhost:27017/transaction"
+        "conn": "mongodb+srv://imd-coin:VLelxb67ZOX1Irkj@imd-coin-lv086.mongodb.net/test?retryWrites=true&w=majority"
     },
     "jwt": {
         "secret": "ZfV$_KpF&yp7-xt27z@_-A*PT3tzQK"
