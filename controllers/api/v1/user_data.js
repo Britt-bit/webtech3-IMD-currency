@@ -3,6 +3,20 @@ const authController = require('../../auth');
 
 
 
+const getMyUser = (req, res) => {
+    //let uid = result.user._id;
+    console.log(req.user._id);
+    myUser.find({"_id": req.user._id}, (err, docs) => {
+        res.json({
+            "status": "success",
+            "data": {
+                "status": "succes",
+                "data": docs
+            }    
+        });
+    }) 
+}
+
 const createUser = (req, res, next) => {
     //console.log(req.body);
 
@@ -30,7 +44,7 @@ const createUser = (req, res, next) => {
 }
 
 
-
+module.exports.getMyUser = getMyUser;
 module.exports.createUser = createUser;
 
 //module.exports.transactionSchema = mongoose.model('transaction', transactionSchema);
