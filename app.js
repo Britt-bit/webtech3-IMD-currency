@@ -10,6 +10,7 @@ const usersRouter = require('./routes/users');
 const apiTransactionRouter = require('./routes/api/v1/transaction');
 const userRouter= require('./routes/api/v1/user_data');
 const myUserRouter= require('./routes/api/v1/my_user_data');
+const allUserRouter= require('./routes/api/v1/all_user_data');
 const testRouter = require("./routes/api/v1/testController");
 const passport = require('./passport/passport');
 
@@ -44,6 +45,9 @@ app.use('/api/user_data', userRouter);
 app.use('/api/my_user_data', passport.authenticate('jwt', {
   session: false
 }), myUserRouter);
+app.use('/api/all_user_data', passport.authenticate('jwt', {
+  session: false
+}), allUserRouter);
 
 app.use("/api/test", testRouter);
 

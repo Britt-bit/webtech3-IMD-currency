@@ -1,9 +1,9 @@
 const myUser = require('../../../models/User_data');
 
-const getMyUser = (req, res) => {
+const getAllUser = (req, res) => {
     //let uid = result.user._id;
     //console.log(req.user);
-    myUser.find({"_id": req.user._id}, (err, docs) => {
+    myUser.find({"_id": {"$nin": [req.user._id]}}, (err, docs) => {
         res.json({
             "status": "success",
             "data": {
@@ -16,4 +16,4 @@ const getMyUser = (req, res) => {
 
 
 
-module.exports.getMyUser = getMyUser;
+module.exports.getAllUser = getAllUser;
