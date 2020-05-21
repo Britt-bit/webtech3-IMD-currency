@@ -20,6 +20,30 @@ const getById = (req, res) => {
 		}
 	});
 };
+const getHistory = (req, res) => {
+	Transaction.find(
+		{
+			$or: [{ fromUser: req.params.id }, { toUser: req.params.id }],
+		},
+		(err, docs) => {
+			console.log(req);
+			if (!err) {
+				res.json({
+					status: "success",
+					data: {
+						data: docs,
+					},
+				});
+			}
+			if (err) {
+				res.json({
+					status: "error",
+					data: "Could not find a message with id: " + req.params.id,
+				});
+			}
+		}
+	);
+};
 // const create = (req, res) => {
 // 	let transaction = new Transaction();
 // 	transaction.fromUser = "1221313";
@@ -39,7 +63,7 @@ const getById = (req, res) => {
 // 		}
 // 	});
 // };
-const getAll = (req, res) => {
+const getLeaderboard = (req, res) => {
 	User.find({}, (err, docs) => {
 		res.json({
 			status: "success",
@@ -73,6 +97,7 @@ const createUser = (req, res) => {
 	});
 };
 module.exports.createUser = createUser;
-module.exports.getAll = getAll;
+module.exports.getLeaderboard = getLeaderboard;
 module.exports.getById = getById;
+module.exports.getHistory = getHistory;
 // module.exports.create = create;
