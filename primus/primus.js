@@ -7,7 +7,7 @@ let go = (server) => {
 
         spark.on('data', (data) => {
             console.log(data);
-            console.log("you're doing great");
+            primus.write(data);
         })
     });
 
