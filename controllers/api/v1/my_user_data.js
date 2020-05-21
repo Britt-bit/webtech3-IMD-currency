@@ -1,4 +1,4 @@
-const myUser = require("../../../models/User_data");
+const myUser = require("../../../models/User_data"); 
 const Transaction = require("../../../models/Transaction");
 
 const getMyUser = (req, res) => {
