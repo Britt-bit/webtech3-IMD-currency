@@ -9,11 +9,11 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const apiTransactionRouter = require('./routes/api/v1/transaction');
 const userRouter= require('./routes/api/v1/user_data');
-const myUserRouter= require('./routes/api/v1/my_user_data.js');
+const myUserRouter= require('./routes/api/v1/my_user_data');
 const testRouter = require("./routes/api/v1/testController");
 const passport = require('./passport/passport');
-const config = require('config');
 
+const config = require('config');
 const mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true);
 mongoose.connect(process.env.dbconn || config.get('Database.conn'), {
