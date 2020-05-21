@@ -46,17 +46,17 @@ const create = async (req, res) => {
 		})
 	);
 };
-const getAll = (req, res) => {
-	Transaction.find({}, (err, docs) => {
-		res.json({
-			status: "success",
-			data: {
-				status: "succes",
-				data: docs,
-			},
-		});
-	});
-};
+// const getAll = (req, res) => {
+// 	Transaction.find({}, (err, docs) => {
+// 		res.json({
+// 			status: "success",
+// 			data: {
+// 				status: "succes",
+// 				data: docs,
+// 			},
+// 		});
+// 	});
+// };
 const getById = (req, res) => {
 	Transaction.find({ _id: req.params.id }, (err, docs) => {
 		console.log(req);
@@ -76,9 +76,22 @@ const getById = (req, res) => {
 		}
 	});
 };
-module.exports.getAll = getAll;
+const getLeaderboard = (req, res) => {
+	User.find({}, (err, docs) => {
+		res.json({
+			status: "success",
+			data: {
+				status: "succes",
+				data: docs,
+			},
+		});
+	}).sort({ coins: "descending" });
+};
+
+// module.exports.getAll = getAll;
 module.exports.getById = getById;
 module.exports.create = create;
+module.exports.getLeaderboard = getLeaderboard;
 
 //module.exports.transactionSchema = mongoose.model('transaction', transactionSchema);
 //odule.exports.user = mongoose.model('user', userSchema);

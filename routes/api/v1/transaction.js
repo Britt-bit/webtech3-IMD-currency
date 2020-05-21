@@ -3,9 +3,7 @@ const router = express.Router();
 const transactionController = require("../../../controllers/api/v1/transaction");
 
 /** /api/trasaction */
-
-/* get transfers = haalt alle transfers op uit de database (enkel uit eigen account) */
-router.get("/", transactionController.getAll);
+// router.get("/", transactionController.getAll);
 
 /* post transfers = voegt een coin transactie toe in je database */
 router.post("/", transactionController.create);
@@ -14,5 +12,6 @@ router.post("/", transactionController.create);
 router.get("/:id", transactionController.getById);
 
 /* get leaderboard: haal per user het aantal coins op */
+router.get("/", transactionController.getLeaderboard);
 
 module.exports = router;
