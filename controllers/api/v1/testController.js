@@ -1,25 +1,25 @@
 const Transaction = require("../../../models/Transaction");
 const User = require("../../../models/User_data");
 
-const getById = (req, res) => {
-	Transaction.find({ _id: req.params.id }, (err, docs) => {
-		console.log(req);
-		if (!err) {
-			res.json({
-				status: "success",
-				data: {
-					data: docs,
-				},
-			});
-		}
-		if (err) {
-			res.json({
-				status: "error",
-				data: "Could not find a message with id: " + req.params.id,
-			});
-		}
-	});
-};
+// const getById = (req, res) => {
+// 	Transaction.find({ _id: req.params.id }, (err, docs) => {
+// 		console.log(req);
+// 		if (!err) {
+// 			res.json({
+// 				status: "success",
+// 				data: {
+// 					data: docs,
+// 				},
+// 			});
+// 		}
+// 		if (err) {
+// 			res.json({
+// 				status: "error",
+// 				data: "Could not find a message with id: " + req.params.id,
+// 			});
+// 		}
+// 	});
+// };
 const getHistory = (req, res) => {
 	Transaction.find(
 		{
@@ -96,8 +96,20 @@ const createUser = (req, res) => {
 		}
 	});
 };
+const getAll = (req, res) => {
+	Transaction.find({}, (err, docs) => {
+		res.json({
+			status: "success",
+			data: {
+				status: "succes",
+				data: docs,
+			},
+		});
+	});
+};
 module.exports.createUser = createUser;
 module.exports.getLeaderboard = getLeaderboard;
-module.exports.getById = getById;
+// module.exports.getById = getById;
 module.exports.getHistory = getHistory;
+module.exports.getAll = getAll;
 // module.exports.create = create;
