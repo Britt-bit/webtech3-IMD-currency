@@ -1,8 +1,10 @@
 const Transaction = require("../../../models/Transaction");
 //const User = require('./user_data');
 //const User = mongoose.model('User', userSchema);
+const User = require("../../../models/User_data");
 
 const create = async (req, res) => {
+<<<<<<< HEAD
     //console.log(req.body.coins);
     //console.log(req.user);
     let fromUser = req.user._id;
@@ -16,6 +18,18 @@ const create = async (req, res) => {
 	let toName = req.body.toName;
     //transaction.fromUser = new mongoose.Types.ObjectId;
 
+=======
+	//console.log(req.body.coins);
+	//console.log(req.user);
+	let fromUser = req.user._id;
+	//console.log(req.user);
+	let toUser = req.body.toUser;
+	let coins = req.body.coins;
+	let reason = req.body.reason;
+	let message = req.body.message;
+	let ownCoins = req.user.coins;
+	//transaction.fromUser = new mongoose.Types.ObjectId;
+>>>>>>> 75601d2d6f360a876d38bc7fc7625c04a3fd7943
 
 	const transaction = new Transaction({
 		fromName: fromName,
