@@ -6,16 +6,19 @@ const create = async (req, res) => {
     //console.log(req.body.coins);
     //console.log(req.user);
     let fromUser = req.user._id;
-    //console.log(req.user);
+	//console.log(req.user);
     let toUser = req.body.toUser;
     let coins = req.body.coins;
     let reason = req.body.reason;
     let message = req.body.message;
-    let ownCoins = req.user.coins;
+	let ownCoins = req.user.coins;
+	let fromName = req.user.firstname;
+	let toName = req.body.toName;
     //transaction.fromUser = new mongoose.Types.ObjectId;
 
 
 	const transaction = new Transaction({
+		fromName: fromName,
 		fromUser: fromUser,
 		toUser: toUser,
 		coins: coins,
