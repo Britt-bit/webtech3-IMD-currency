@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
@@ -80,6 +79,3 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
-=======
-
->>>>>>> b52ae324dbad9a6e3dc693485efa99b9b6d40b36

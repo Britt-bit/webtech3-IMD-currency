@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
   "name": "webtech3-imd-currency",
   "version": "0.0.0",
@@ -28,6 +27,3 @@
     "nodemon": "^2.0.3"
   }
 }
-=======
-
->>>>>>> b52ae324dbad9a6e3dc693485efa99b9b6d40b36
